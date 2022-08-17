@@ -1,0 +1,29 @@
+.container {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  padding: 4px 6px;
+  width: 75px;
+  border-radius: 7px;
+  z-index: 2;
+  background: #f9f9f9;
+}
+
+.edit,
+.add {
+  cursor: pointer;
+  font-size: 23px;
+  padding: 3px 8px;
+}
+
+.edit:hover,
+.add:hover {
+  cursor: pointer;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+}

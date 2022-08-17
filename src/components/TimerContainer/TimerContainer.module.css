@@ -1,0 +1,11 @@
+.container {
+  background: #f9f9f9;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 30px;
+  width: 72%;
+  align-content: flex-start;
+  position: absolute;
+  right: 0px; 
+}
