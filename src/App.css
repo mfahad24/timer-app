@@ -1,6 +1,16 @@
+* {
+  font-family: Tahoma;
+  font-weight: 100;
+}
+
 .App {
   display: flex;
   flex-direction: row;
+}
+
+/* the material icons have come out the box bolded for some reason */
+svg {
+  stroke: white;
 }
 
 .App-logo {

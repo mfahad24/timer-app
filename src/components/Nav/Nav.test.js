@@ -22,3 +22,9 @@ test("all nav buttons are rendered", () => {
   expect(signIn).toBeInTheDocument();
   expect(settings).toBeInTheDocument();
 });
+
+test("'Timer' menu item should have selected class on it", () => {
+  render(<Nav />);
+  const selectedElement = screen.getByTestId("selected-nav-item");
+  expect(selectedElement).toHaveClass("selected");
+});

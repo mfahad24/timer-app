@@ -8,10 +8,47 @@
   background-color: #fdfdfd;
   padding: 10px;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .container:hover {
   transform: translateY(-4px);
   transition-duration: 0.2s;
   background-color: #f3f3f3;
+}
+
+.singleTimerTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.singleTimerTitle {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.singleTimerTop svg {
+  cursor: pointer;
+  margin-left: 12px;
+  padding: 5px;
+}
+
+.singleTimerTop svg:hover {
+  background-color: lightgrey;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.singleTimerBottom {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.singleTimerBottom > svg {
+  margin: 0px 7px 10px 0px;
+  cursor: pointer;
 }

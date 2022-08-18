@@ -1,16 +1,24 @@
 import React, { ReactElement } from "react";
-import timerActionStyles from "./TimerActions.module.css";
-import AddIcon from "@mui/icons-material/Add";
-import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import styles from "./TimerActions.module.css";
+import Add from "@mui/icons-material/Add";
+import Edit from "@mui/icons-material/ModeEditOutlined";
 
 const TimerActions: React.FC = (): ReactElement => {
   return (
-    <div className={timerActionStyles.container}>
-      <div className={timerActionStyles.edit} title="Edit timers">
-        <ModeEditOutlinedIcon fontSize="small" />
+    <div className={styles.container}>
+      <div
+        data-testid="all-timers-edit-icon"
+        className={styles.edit}
+        title="Edit timers"
+      >
+        <Edit fontSize="small" />
       </div>
-      <div className={timerActionStyles.add} title="Add new timer">
-        <AddIcon fontSize="small" />
+      <div
+        data-testid="add-timer-icon"
+        className={styles.add}
+        title="Add new timer"
+      >
+        <Add fontSize="small" />
       </div>
     </div>
   );
