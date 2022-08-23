@@ -1,15 +1,19 @@
 import React, { ReactElement } from "react";
+
+//styles
 import styles from "./SingleTimerInnerCircle.module.css";
 
-interface SingleTimerInnerCircleProps {}
+interface SingleTimerInnerCircleProps {
+  time: String;
+}
 
-const SingleTimerInnerCircle: React.FC<
-  SingleTimerInnerCircleProps
-> = (): ReactElement => {
+const SingleTimerInnerCircle: React.FC<SingleTimerInnerCircleProps> = ({
+  time,
+}): ReactElement => {
   return (
     <>
       <div className={styles.container} title="Edit timer">
-        <div className={styles.singleTimerTime}>05:00:03</div>
+        <div className={styles.singleTimerTime}>{time}</div>
       </div>
     </>
   );

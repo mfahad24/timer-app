@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
-import styles from "./Nav.module.css";
+
+//icons
 import Clock from "@mui/icons-material/AccessAlarmsOutlined";
 import Focus from "@mui/icons-material/FilterTiltShiftOutlined";
 import Hourglass from "@mui/icons-material/HourglassEmptyOutlined";
@@ -8,6 +9,9 @@ import Stopwatch from "@mui/icons-material/TimerOutlined";
 import World from "@mui/icons-material/PublicOutlined";
 import SignIn from "@mui/icons-material/PersonOutlineOutlined";
 import Settings from "@mui/icons-material/SettingsOutlined";
+
+//styles
+import styles from "./Nav.module.css";
 
 //nav items are not selectable, this is the timer app ONLY
 

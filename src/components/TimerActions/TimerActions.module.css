@@ -11,19 +11,32 @@
   width: 75px;
   border-radius: 7px;
   z-index: 2;
-  background: #f9f9f9;
+  /* background: #f9f9f9; */
 }
 
 .edit,
-.add {
+.add,
+.accept {
   cursor: pointer;
   font-size: 23px;
   padding: 3px 9px;
+  border: none;
 }
 
 .edit:hover,
-.add:hover {
+.add:hover,
+.accept:hover {
   cursor: pointer;
   background-color: #e8e8e8;
   border-radius: 5px;
+}
+
+.add svg {
+  stroke: none;
+}
+
+.editMode {
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
 }

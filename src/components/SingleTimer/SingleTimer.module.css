@@ -13,9 +13,15 @@
   justify-content: space-between;
 }
 
+.editMode {
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .container:hover {
   transform: translateY(-4px);
-  transition-duration: 0.2s;
+  transition-duration: 0.25s;
   background-color: #f3f3f3;
 }
 
@@ -51,4 +57,20 @@
 .singleTimerBottom > svg {
   margin: 0px 7px 10px 0px;
   cursor: pointer;
+}
+
+.singleTimerPlay {
+  fill: #1869a6 !important;
+}
+
+.singleTimerRestart:hover {
+  fill: grey;
+}
+
+.singleTimerPlay:hover {
+  fill: #58a6e2 !important;
+}
+
+.singleTimerTrash {
+  fill: darkred !important;
 }

@@ -1,10 +1,30 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
+
+//components
 import SingleTimer from "../SingleTimer/SingleTimer.tsx";
-import styles from "./TimerContainer.module.css";
+import TimerActions from "../TimerActions/TimerActions.tsx";
+import NewTimerParametersPopup from "../NewTimerParametersPopup/NewTimerParametersPopup.tsx";
+
+//icons
 import Hourglass from "@mui/icons-material/HourglassEmptyOutlined";
-import allTimers from "../../data/AllTimers";
+
+//data
+import allTimersData from "../../data/AllTimersData";
+
+//styles
+import styles from "./TimerContainer.module.css";
 
 const TimerContainer: React.FC = (): ReactElement => {
+  const [allTimers, setAllTimers] = useState<any>([]);
+  const [newTimerParametersPopup, setNewTimerParametersPopup] =
+    useState<boolean>(false);
+  const [editTimers, setEditTimers] = useState<boolean>(false);
+
+  useEffect(() => {
+    allTimersData.map((timer) => {
+      setAllTimers((prevTimer: any) => [...prevTimer, timer]);
+    });
+  }, []);
   return (
     <>
       <div className={styles.container}>
@@ -15,10 +35,24 @@ const TimerContainer: React.FC = (): ReactElement => {
             <span>Select "+" below to add a new timer.</span>
           </div>
         )}
-        {allTimers.map((timer: Object) => (
-          <SingleTimer timer={timer} />
+        {allTimers.map((timer: Object, index: Number) => (
+          <SingleTimer
+            timer={timer}
+            key={`single-timer${index}`}
+            editTimers={editTimers}
+          />
         ))}
       </div>
+      {newTimerParametersPopup === true && (
+        <NewTimerParametersPopup
+          setNewTimerParametersPopup={setNewTimerParametersPopup}
+        />
+      )}
+      <TimerActions
+        setNewTimerParametersPopup={setNewTimerParametersPopup}
+        setEditTimers={setEditTimers}
+        editTimers={editTimers}
+      />
     </>
   );
 };

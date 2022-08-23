@@ -1,0 +1,88 @@
+.container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 10;
+  top: 0;
+  left: 0;
+}
+
+.newTimerParametersPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #f2f3f5;
+  width: 350px;
+  height: 400px;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+hr {
+  border: 1px solid #ececec;
+}
+
+.title {
+  padding: 25px 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.timerNameInputContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+}
+
+.timerNameInput {
+  width: 80%;
+}
+
+.timerNameInput input {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.timerNameInput ::before {
+  left: 3px !important;
+  right: 3px !important;
+}
+
+.timerNameInputIcon {
+  margin: 10px;
+}
+
+.timerButtonsContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+}
+
+.timerButtonsContainer > button {
+  margin: 5px;
+  width: 150px;
+  text-transform: capitalize;
+}
+
+.timerButtonsContainer svg {
+  stroke: none;
+}
+
+.cancel {
+  color: black !important;
+  border: 1px solid lightgrey !important;
+}
+
+.cancel svg {
+  color: black;
+  border: none;
+}
+
+.cancel:hover {
+  color: black;
+  border: 1px solid lightgrey;
+}
