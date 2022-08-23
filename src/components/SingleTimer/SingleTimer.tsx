@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+//@ts-ignore
 import SingleTimerInnerCircle from "../SingleTimerInnerCircle/SingleTimeInnerCircle.tsx";
 
 //icons

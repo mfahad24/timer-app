@@ -1,15 +1,18 @@
 import React, { ReactElement, useEffect, useState } from "react";
 
 //components
+//@ts-ignore
 import SingleTimer from "../SingleTimer/SingleTimer.tsx";
+//@ts-ignore
 import TimerActions from "../TimerActions/TimerActions.tsx";
+//@ts-ignore
 import NewTimerParametersPopup from "../NewTimerParametersPopup/NewTimerParametersPopup.tsx";
 
 //icons
 import Hourglass from "@mui/icons-material/HourglassEmptyOutlined";
 
 //data
-import allTimersData from "../../data/AllTimersData";
+import allTimersData from "../../data/AllTimersData.json";
 
 //styles
 import styles from "./TimerContainer.module.css";
@@ -21,7 +24,7 @@ const TimerContainer: React.FC = (): ReactElement => {
   const [editTimers, setEditTimers] = useState<boolean>(false);
 
   useEffect(() => {
-    allTimersData.map((timer) => {
+    allTimersData.forEach((timer) => {
       setAllTimers((prevTimer: any) => [...prevTimer, timer]);
     });
   }, []);

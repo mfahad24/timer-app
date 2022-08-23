@@ -10,11 +10,11 @@ import Close from "@mui/icons-material/CloseOutlined";
 //styles
 import styles from "./NewTimerParametersPopup.module.css";
 
-interface NewTimerParametersPopup {
+interface NewTimerParametersPopupProps {
   setNewTimerParametersPopup: Function;
 }
 
-const NewTimerParametersPopup: React.FC<NewTimerParametersPopup> = ({
+const NewTimerParametersPopup: React.FC<NewTimerParametersPopupProps> = ({
   setNewTimerParametersPopup,
 }): ReactElement => {
   return (
