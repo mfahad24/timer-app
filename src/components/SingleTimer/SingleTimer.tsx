@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 //@ts-ignore
 import SingleTimerInnerCircle from "../SingleTimerInnerCircle/SingleTimeInnerCircle.tsx";
 
@@ -8,38 +8,71 @@ import MiniView from "@mui/icons-material/LaunchOutlined";
 import Play from "@mui/icons-material/PlayCircleFilledOutlined";
 import Restart from "@mui/icons-material/RestartAltOutlined";
 import Trash from "@mui/icons-material/DeleteOutlineSharp";
+import Minimize from "@mui/icons-material/CloseFullscreen";
 
 //styles
+//@ts-ignore
 import styles from "./SingleTimer.module.css";
 
 interface SingleTimerProps {
-  timer: Object;
+  singleTimer: Object;
   editTimers: boolean;
+  currentIndex: Number;
+  allTimers: Array<Object>;
+  setAllTimers: Function;
+  setFullView: Function;
+  fullView: boolean;
 }
 
 const SingleTimer: React.FC<SingleTimerProps> = ({
-  timer,
+  singleTimer,
   editTimers,
+  currentIndex,
+  allTimers,
+  setAllTimers,
+  setFullView,
+  fullView,
 }): ReactElement => {
+  const [expandedTimer, setExpandedTimer] = useState<Number | null>(null);
+
+  const removeTimer = () => {
+    console.log(currentIndex);
+    setAllTimers(allTimers.filter((timer) => timer["id"] !== currentIndex));
+  };
+
+  const expandTimer = () => {
+    setExpandedTimer(currentIndex);
+    setFullView(true);
+  };
+
   return (
     <>
-      <div className={styles.container} title="Edit timer">
+      <div
+        className={`${styles.container} ${
+          fullView === true && singleTimer["id"] === expandedTimer
+            ? `${styles.containerExpanded}`
+            : ""
+        }`}
+        data-testid="single-timer-container"
+        title="Edit timer"
+      >
         <div className={styles.singleTimerTop}>
           <div
             className={`${styles.singleTimerTitle} ${
               editTimers === true ? `${styles.editMode}` : ""
-            }`}
+            } ${fullView === true ? `${styles.hidden}` : ""}`}
             data-testid="single-timer-title"
           >
-            {timer?.["title"]}
+            {singleTimer?.["title"]}
           </div>
           <div>
-            {editTimers === false && (
+            {editTimers === false && fullView === false && (
               <>
                 <FullView
                   className={styles.singleTimerFullView}
                   data-testid="single-timer-full-view"
                   fontSize="medium"
+                  onClick={() => expandTimer()}
                 />
                 <MiniView
                   className={styles.singleTimerMiniView}
@@ -48,11 +81,20 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
                 />
               </>
             )}
+            {fullView === true && (
+              <Minimize
+                className={styles.singleTimerMinimize}
+                data-testid="single-timer-minimize"
+                fontSize="medium"
+                onClick={() => setFullView(false)}
+              />
+            )}
             {editTimers === true && (
               <Trash
                 className={styles.singleTimerTrash}
                 data-testid="single-timer-trash"
                 fontSize="medium"
+                onClick={() => removeTimer()}
               />
             )}
           </div>
@@ -62,7 +104,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
             editTimers === true ? `${styles.editMode}` : ""
           }`}
         >
-          <SingleTimerInnerCircle time={timer?.["time"]} />
+          <SingleTimerInnerCircle time={singleTimer?.["time"]} />
         </div>
         <div
           className={`${styles.singleTimerBottom} ${

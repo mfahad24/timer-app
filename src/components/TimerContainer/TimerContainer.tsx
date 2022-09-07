@@ -7,6 +7,8 @@ import SingleTimer from "../SingleTimer/SingleTimer.tsx";
 import TimerActions from "../TimerActions/TimerActions.tsx";
 //@ts-ignore
 import NewTimerParametersPopup from "../NewTimerParametersPopup/NewTimerParametersPopup.tsx";
+//@ts-ignore
+import Nav from "../Nav/Nav.tsx";
 
 //icons
 import Hourglass from "@mui/icons-material/HourglassEmptyOutlined";
@@ -15,6 +17,7 @@ import Hourglass from "@mui/icons-material/HourglassEmptyOutlined";
 import allTimersData from "../../data/AllTimersData.json";
 
 //styles
+//@ts-ignore
 import styles from "./TimerContainer.module.css";
 
 const TimerContainer: React.FC = (): ReactElement => {
@@ -22,27 +25,47 @@ const TimerContainer: React.FC = (): ReactElement => {
   const [newTimerParametersPopup, setNewTimerParametersPopup] =
     useState<boolean>(false);
   const [editTimers, setEditTimers] = useState<boolean>(false);
+  const [fullView, setFullView] = useState<boolean>(false);
 
   useEffect(() => {
     allTimersData.forEach((timer) => {
       setAllTimers((prevTimer: any) => [...prevTimer, timer]);
     });
   }, []);
+
+  useEffect(() => {
+    if (allTimers.length === 0) {
+      setEditTimers(false);
+    }
+  }, [allTimers]);
+
   return (
     <>
-      <div className={styles.container}>
+      <Nav fullView={fullView} />
+      <div
+        className={`${styles.container} ${
+          fullView === true ? `${styles.containerExpanded}` : ""
+        }`}
+      >
         {allTimers.length === 0 && (
           <div className={styles.noTimers}>
-            <Hourglass fontSize="large" />
-            <h2>You don't have any timers</h2>
-            <span>Select "+" below to add a new timer.</span>
+            <Hourglass fontSize="large" className={styles.noTimersIcon} />
+            <h2 className={styles.noTimerMessage}>You don't have any timers</h2>
+            <span className={styles.noTimerSubMessage}>
+              Select "+" below to add a new timer.
+            </span>
           </div>
         )}
-        {allTimers.map((timer: Object, index: Number) => (
+        {allTimers.map((singleTimer: Object, index: Number) => (
           <SingleTimer
-            timer={timer}
+            singleTimer={singleTimer}
             key={`single-timer${index}`}
             editTimers={editTimers}
+            currentIndex={singleTimer["id"]}
+            setAllTimers={setAllTimers}
+            allTimers={allTimers}
+            setFullView={setFullView}
+            fullView={fullView}
           />
         ))}
       </div>
@@ -55,6 +78,8 @@ const TimerContainer: React.FC = (): ReactElement => {
         setNewTimerParametersPopup={setNewTimerParametersPopup}
         setEditTimers={setEditTimers}
         editTimers={editTimers}
+        allTimers={allTimers}
+        fullView={fullView}
       />
     </>
   );

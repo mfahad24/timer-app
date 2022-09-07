@@ -1,5 +1,6 @@
 [
   {
+    "id": 0, 
     "title": "Timer 1",
     "time": "00:05:00",
     "playable": true,
@@ -7,6 +8,7 @@
     "trashBtnVisible": false
   },
   {
+    "id": 1, 
     "title": "Timer 2",
     "time": "00:00:30",
     "playable": true,
@@ -14,6 +16,7 @@
     "trashBtnVisible": false
   },
   {
+    "id": 2, 
     "title": "Timer 3",
     "time": "00:00:30",
     "playable": true,

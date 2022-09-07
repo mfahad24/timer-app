@@ -19,3 +19,9 @@ test("accept all timers button rendered", () => {
   const acceptAllTimersBtn = screen.getByTestId("all-timers-accept-btn");
   expect(acceptAllTimersBtn).toBeInTheDocument();
 });
+
+test("accept all timers button rendered", () => {
+  render(<TimerActions editTimers={true} />);
+  const acceptAllTimersBtn = screen.getByTestId("all-timers-accept-btn");
+  expect(acceptAllTimersBtn).toBeInTheDocument();
+});

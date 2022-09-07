@@ -1,14 +1,13 @@
 import "./App.css";
 import TimerContainer from "./components/TimerContainer/TimerContainer.tsx";
-import Nav from "./components/Nav/Nav.tsx";
 
 function App() {
   return (
     <>
       <div className="App">
-        <Nav />
         <TimerContainer />
       </div>
+      <div className="App-message">This is a desktop app only</div>
     </>
   );
 }

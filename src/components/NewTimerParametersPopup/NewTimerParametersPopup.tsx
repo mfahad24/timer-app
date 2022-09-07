@@ -19,7 +19,10 @@ const NewTimerParametersPopup: React.FC<NewTimerParametersPopupProps> = ({
 }): ReactElement => {
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        data-testid="new-timer-parameters-popup-container"
+      >
         <div className={styles.newTimerParametersPopup}>
           <div className={styles.title}>Add new timer</div>
           <div></div>

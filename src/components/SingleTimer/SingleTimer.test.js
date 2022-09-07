@@ -14,7 +14,7 @@ test("timer text, play button and restart button rendered", () => {
 });
 
 test("full view and mini view buttons rendered", () => {
-  render(<SingleTimer editTimers={false} />);
+  render(<SingleTimer editTimers={false} fullView={false} />);
   const fullView = screen.getByTestId("single-timer-full-view");
   const miniView = screen.getByTestId("single-timer-mini-view");
 

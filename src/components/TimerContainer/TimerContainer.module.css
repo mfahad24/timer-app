@@ -12,6 +12,11 @@
   height: 100vh;
 }
 
+.containerExpanded {
+  padding: 0px;
+  width: 100%;
+}
+
 .noTimers {
   display: flex;
   flex-direction: column;
@@ -24,6 +29,16 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-.noTimers > span {
+.noTimerSubMessage {
   font-size: 14px;
+}
+
+.noTimerMessage {
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.noTimersIcon {
+  font-size: 50px !important;
 }

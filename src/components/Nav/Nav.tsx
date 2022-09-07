@@ -15,10 +15,18 @@ import styles from "./Nav.module.css";
 
 //nav items are not selectable, this is the timer app ONLY
 
-const Nav: React.FC = (): ReactElement => {
+interface NavProps {
+  fullView: boolean;
+}
+
+const Nav: React.FC<NavProps> = ({ fullView }): ReactElement => {
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${
+          fullView === true ? `${styles.containerHidden}` : ""
+        }`}
+      >
         <div>
           <div className={`${styles.navTop} ${styles.appTitle}`}>
             <Clock fontSize="small" />

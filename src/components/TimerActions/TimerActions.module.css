@@ -11,7 +11,11 @@
   width: 75px;
   border-radius: 7px;
   z-index: 2;
-  /* background: #f9f9f9; */
+  background: #f9f9f9;
+}
+
+.containerHidden {
+  display: none;
 }
 
 .edit,
@@ -35,7 +39,7 @@
   stroke: none;
 }
 
-.editMode {
+.disabled {
   opacity: 0.3;
   z-index: 1;
   pointer-events: none;
