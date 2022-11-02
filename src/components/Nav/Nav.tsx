@@ -34,36 +34,36 @@ const Nav: React.FC<NavProps> = ({ fullView }): ReactElement => {
           </div>
           <div className={styles.navTop}>
             <Focus fontSize="small" />
-            <span className={styles.iconText}>Focus sessions</span>
+            <span className={styles.iconText} title="Visual only">Focus sessions</span>
           </div>
           <div
             data-testid="selected-nav-item"
             className={`${styles.navTop} ${styles.selected}`}
           >
             <Hourglass fontSize="small" />
-            <span className={styles.iconText}>Timer</span>
+            <span className={styles.iconText} title="Visual only">Timer</span>
           </div>
           <div className={styles.navTop}>
             <Alarm fontSize="small" />
-            <span className={styles.iconText}>Alarm</span>
+            <span className={styles.iconText} title="Visual only">Alarm</span>
           </div>
           <div className={styles.navTop}>
             <Stopwatch fontSize="small" />
-            <span className={styles.iconText}>Stopwatch</span>
+            <span className={styles.iconText} title="Visual only">Stopwatch</span>
           </div>
           <div className={styles.navTop}>
             <World fontSize="small" />
-            <span className={styles.iconText}>World clock</span>
+            <span className={styles.iconText} title="Visual only">World clock</span>
           </div>
         </div>
         <div>
           <div className={styles.navBottom}>
             <SignIn fontSize="small" />
-            <span className={styles.iconText}>Sign in</span>
+            <span className={styles.iconText} title="Visual only">Sign in</span>
           </div>
           <div className={styles.navBottom}>
             <Settings fontSize="small" />
-            <span className={styles.iconText}>Settings</span>
+            <span className={styles.iconText} title="Visual only">Settings</span>
           </div>
         </div>
       </div>

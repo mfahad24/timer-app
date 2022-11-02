@@ -3,13 +3,14 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  padding: 30px;
+  padding: 0px 30px;
   width: 72%;
   align-content: flex-start;
   position: absolute;
   right: 0px;
   z-index: 1;
-  height: 100vh;
+  height: 100%; 
+  overflow: auto; 
 }
 
 .containerExpanded {
@@ -41,4 +42,11 @@
 
 .noTimersIcon {
   font-size: 50px !important;
+}
+
+.loadingSpinnerBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }

@@ -1,26 +1,17 @@
 [
   {
     "id": 0, 
-    "title": "Timer 1",
-    "time": "00:05:00",
-    "playable": true,
-    "resetable": true,
-    "trashBtnVisible": false
+    "title": "countDownTimer 1",
+    "countDownTime": "00:05:00"
   },
   {
     "id": 1, 
-    "title": "Timer 2",
-    "time": "00:00:30",
-    "playable": true,
-    "resetable": true,
-    "trashBtnVisible": false
+    "title": "countDownTimer 2",
+    "countDownTime": "00:02:50"
   },
   {
     "id": 2, 
-    "title": "Timer 3",
-    "time": "00:00:30",
-    "playable": true,
-    "resetable": true,
-    "trashBtnVisible": false
+    "title": "countDownTimer 3",
+    "countDownTime": "00:01:00"
   }
 ]

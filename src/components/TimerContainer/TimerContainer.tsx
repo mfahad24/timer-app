@@ -1,4 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
+//@ts-ignore
+import Axios from "axios";
 
 //components
 //@ts-ignore
@@ -12,6 +14,8 @@ import Nav from "../Nav/Nav.tsx";
 
 //icons
 import Hourglass from "@mui/icons-material/HourglassEmptyOutlined";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 //data
 import allTimersData from "../../data/AllTimersData.json";
@@ -26,11 +30,27 @@ const TimerContainer: React.FC = (): ReactElement => {
     useState<boolean>(false);
   const [editTimers, setEditTimers] = useState<boolean>(false);
   const [fullView, setFullView] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    allTimersData.forEach((timer) => {
-      setAllTimers((prevTimer: any) => [...prevTimer, timer]);
-    });
+    setLoading(true);
+    setTimeout(() => {
+      Axios.get("http://localhost:3001/api/get")
+        .then((response) =>
+          response.data.forEach((timer: any) => {
+            setAllTimers((prevTimer: any) => [...prevTimer, timer]);
+          })
+        )
+        .catch(() =>
+          //if server down, use local data
+          allTimersData.forEach((timer) => {
+            setAllTimers((prevTimer: any) => [...prevTimer, timer]);
+          })
+        )
+        .finally(() => {
+          setLoading(false);
+        });
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -47,7 +67,7 @@ const TimerContainer: React.FC = (): ReactElement => {
           fullView === true ? `${styles.containerExpanded}` : ""
         }`}
       >
-        {allTimers.length === 0 && (
+        {allTimers.length === 0 && loading === false && (
           <div className={styles.noTimers}>
             <Hourglass fontSize="large" className={styles.noTimersIcon} />
             <h2 className={styles.noTimerMessage}>You don't have any timers</h2>
@@ -68,10 +88,17 @@ const TimerContainer: React.FC = (): ReactElement => {
             fullView={fullView}
           />
         ))}
+        {loading === true && (
+          <Box className={styles.loadingSpinnerBox}>
+            <CircularProgress />
+          </Box>
+        )}
       </div>
       {newTimerParametersPopup === true && (
         <NewTimerParametersPopup
           setNewTimerParametersPopup={setNewTimerParametersPopup}
+          setAllTimers={setAllTimers}
+          allTimers={allTimers}
         />
       )}
       <TimerActions

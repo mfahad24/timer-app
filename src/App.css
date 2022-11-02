@@ -36,5 +36,6 @@ svg {
     transform: translate(-50%, -50%);
     font-weight: bold;
     text-align: center;
+    width: 200px; 
   }
 }

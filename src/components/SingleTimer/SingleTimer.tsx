@@ -1,4 +1,6 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState, useCallback } from "react";
+//@ts-ignore
+import Axios from "axios";
 //@ts-ignore
 import SingleTimerInnerCircle from "../SingleTimerInnerCircle/SingleTimeInnerCircle.tsx";
 
@@ -36,8 +38,8 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
   const [expandedTimer, setExpandedTimer] = useState<Number | null>(null);
 
   const removeTimer = () => {
-    console.log(currentIndex);
     setAllTimers(allTimers.filter((timer) => timer["id"] !== currentIndex));
+    Axios.delete(`http://localhost:3001/api/delete/${currentIndex}`).catch((err) => console.log(err))
   };
 
   const expandTimer = () => {
@@ -55,6 +57,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
         }`}
         data-testid="single-timer-container"
         title="Edit timer"
+        id={singleTimer["id"]}
       >
         <div className={styles.singleTimerTop}>
           <div
@@ -63,7 +66,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
             } ${fullView === true ? `${styles.hidden}` : ""}`}
             data-testid="single-timer-title"
           >
-            {singleTimer?.["title"]}
+            {singleTimer?.["title"].length < 20 ? singleTimer?.["title"] : singleTimer?.["title"].substring(0, 20) + '...'}
           </div>
           <div>
             {editTimers === false && fullView === false && (
@@ -104,7 +107,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
             editTimers === true ? `${styles.editMode}` : ""
           }`}
         >
-          <SingleTimerInnerCircle time={singleTimer?.["time"]} />
+          <SingleTimerInnerCircle countDownTime={singleTimer.countDownTime} />
         </div>
         <div
           className={`${styles.singleTimerBottom} ${

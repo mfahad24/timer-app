@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.increaseArrowsContainer {
+    margin: 0px 25px 10px 25px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.decreaseArrowsContainer {
+    margin: 0px 25px 10px 25px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.selectTimeContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 25px 0px 25px; 
+}
+
+.increaseArrowsContainer > svg {
+    cursor: pointer; 
+}
+
+.decreaseArrowsContainer > svg {
+    cursor: pointer; 
+}
+
+.selectTimeContainer input {
+    font-weight: bold;  
+    text-align: center;
+    background: white !important;
+}
+
+.container input::-webkit-outer-spin-button,
+.container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.container input[type=number] {
+  -moz-appearance: textfield;
+}
