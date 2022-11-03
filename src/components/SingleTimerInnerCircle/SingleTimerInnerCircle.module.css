@@ -4,3 +4,9 @@
   font-weight: 600;
   color: dimgrey;
 }
+
+.singleTimerTime span {
+  width: 200px !important; 
+  height: 200px !important; 
+  color: #1869a6 !important;
+}

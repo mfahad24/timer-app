@@ -36,10 +36,38 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
   fullView,
 }): ReactElement => {
   const [expandedTimer, setExpandedTimer] = useState<Number | null>(null);
+  //state for inner number timer
+  const [totalTimeInSeconds, setTotalTimeInSeconds] = useState(0);
+  //state for outer circular progress
+  const [outOf100, setOutOf100] = useState(100);
+
+  const startCountDownTimer = () => {
+    const timer = setInterval(() => {
+      setTotalTimeInSeconds((prevProgress) =>
+        prevProgress <= 1 ? 0 : prevProgress - 1
+      );
+      setOutOf100(
+        //@ts-ignore
+        (prevProgress) =>
+          prevProgress > 1 && (prevProgress - (100 / totalTimeInSeconds))
+      );
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  };
+
+  useEffect(() => {
+    let splitTime = singleTimer.countDownTime.split(":");
+    let seconds = +splitTime[0] * 60 * 60 + +splitTime[1] * 60 + +splitTime[2];
+    setTotalTimeInSeconds(seconds);
+  }, []);
 
   const removeTimer = () => {
     setAllTimers(allTimers.filter((timer) => timer["id"] !== currentIndex));
-    Axios.delete(`http://localhost:3001/api/delete/${currentIndex}`).catch((err) => console.log(err))
+    Axios.delete(`http://localhost:3001/api/delete/${currentIndex}`).catch(
+      (err) => console.log(err)
+    );
   };
 
   const expandTimer = () => {
@@ -66,7 +94,9 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
             } ${fullView === true ? `${styles.hidden}` : ""}`}
             data-testid="single-timer-title"
           >
-            {singleTimer?.["title"].length < 20 ? singleTimer?.["title"] : singleTimer?.["title"].substring(0, 20) + '...'}
+            {singleTimer?.["title"].length < 20
+              ? singleTimer?.["title"]
+              : singleTimer?.["title"].substring(0, 20) + "..."}
           </div>
           <div>
             {editTimers === false && fullView === false && (
@@ -77,6 +107,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
                   fontSize="medium"
                   onClick={() => expandTimer()}
                 />
+                {/* feature not available on browser? */}
                 <MiniView
                   className={styles.singleTimerMiniView}
                   data-testid="single-timer-mini-view"
@@ -107,7 +138,10 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
             editTimers === true ? `${styles.editMode}` : ""
           }`}
         >
-          <SingleTimerInnerCircle countDownTime={singleTimer.countDownTime} />
+          <SingleTimerInnerCircle
+            totalTimeInSeconds={totalTimeInSeconds}
+            outOf100={outOf100}
+          />
         </div>
         <div
           className={`${styles.singleTimerBottom} ${
@@ -118,6 +152,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
             className={styles.singleTimerPlay}
             fontSize="large"
             data-testid="single-timer-play"
+            onClick={() => startCountDownTimer()}
           />
           <Restart
             className={styles.singleTimerRestart}

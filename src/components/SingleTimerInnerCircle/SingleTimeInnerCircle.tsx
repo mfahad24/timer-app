@@ -1,41 +1,30 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { ReactElement } from "react";
 
 //styles
 //@ts-ignore
 import styles from "./SingleTimerInnerCircle.module.css";
 
 //material ui
-import CircularProgress, {
-} from "@mui/material/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 interface SingleTimerInnerCircleProps {
-  countDownTime: String;
+  totalTimeInSeconds: number;
+  outOf100: number;
 }
 
 const SingleTimerInnerCircle: React.FC<SingleTimerInnerCircleProps> = ({
-  countDownTime,
+  totalTimeInSeconds,
+  outOf100,
 }): ReactElement => {
-  const [progress, setProgress] = useState(0);
-
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setProgress((prevProgress) =>
-  //       prevProgress <= 1 ? 1000 : prevProgress - 1
-  //     );
-  //   }, 800);
-  //   return () => {
-  //     clearInterval(timer);
-  //   };
-  // }, []);
-
+  const time = { value: outOf100 };
   return (
     <>
       <div className={styles.container} title="Edit timer">
         <div className={styles.singleTimerTime}>
           <Box sx={{ position: "relative", display: "inline-flex" }}>
-            <CircularProgress variant="determinate" />
+            <CircularProgress variant="determinate" {...time} />
             <Box
               sx={{
                 top: 0,
@@ -53,8 +42,11 @@ const SingleTimerInnerCircle: React.FC<SingleTimerInnerCircleProps> = ({
                 component="div"
                 color="text.primary"
                 fontSize="35px"
+                fontWeight="bold"
               >
-                {countDownTime}
+                {new Date(totalTimeInSeconds * 1000)
+                  .toISOString()
+                  .substr(11, 8)}
               </Typography>
             </Box>
           </Box>
