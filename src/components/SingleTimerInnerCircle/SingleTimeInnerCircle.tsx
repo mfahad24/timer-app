@@ -8,17 +8,21 @@ import styles from "./SingleTimerInnerCircle.module.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Bell from "@mui/icons-material/NotificationsNone";
 
 interface SingleTimerInnerCircleProps {
   totalTimeInSeconds: number;
   outOf100: number;
+  showEndTime: boolean;
 }
 
 const SingleTimerInnerCircle: React.FC<SingleTimerInnerCircleProps> = ({
   totalTimeInSeconds,
   outOf100,
+  showEndTime,
 }): ReactElement => {
   const time = { value: outOf100 };
+  const now = new Date();
   return (
     <>
       <div className={styles.container} title="Edit timer">
@@ -47,6 +51,14 @@ const SingleTimerInnerCircle: React.FC<SingleTimerInnerCircleProps> = ({
                 {new Date(totalTimeInSeconds * 1000)
                   .toISOString()
                   .substr(11, 8)}
+                {showEndTime && (
+                  <div className={styles.endTime}>
+                    <Bell />
+                    {`${new Date(now.getTime() + totalTimeInSeconds * 1000) // * 1000 to get ms
+                      .toLocaleTimeString()
+                      .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")}`}
+                  </div>
+                )}
               </Typography>
             </Box>
           </Box>

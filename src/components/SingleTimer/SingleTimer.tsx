@@ -11,6 +11,7 @@ import Play from "@mui/icons-material/PlayCircleFilledOutlined";
 import Restart from "@mui/icons-material/RestartAltOutlined";
 import Trash from "@mui/icons-material/DeleteOutlineSharp";
 import Minimize from "@mui/icons-material/CloseFullscreen";
+import Pause from "@mui/icons-material/PauseCircle";
 
 //styles
 //@ts-ignore
@@ -40,8 +41,10 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
   const [totalTimeInSeconds, setTotalTimeInSeconds] = useState(0);
   //state for outer circular progress
   const [outOf100, setOutOf100] = useState(100);
+  const [showEndTime, setShowEndTime] = useState(false);
 
   const startCountDownTimer = () => {
+    setShowEndTime(true);
     const timer = setInterval(() => {
       setTotalTimeInSeconds((prevProgress) =>
         prevProgress <= 1 ? 0 : prevProgress - 1
@@ -49,7 +52,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
       setOutOf100(
         //@ts-ignore
         (prevProgress) =>
-          prevProgress > 1 && (prevProgress - (100 / totalTimeInSeconds))
+          prevProgress > 1 && prevProgress - 100 / totalTimeInSeconds
       );
     }, 1000);
     return () => {
@@ -62,6 +65,12 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
     let seconds = +splitTime[0] * 60 * 60 + +splitTime[1] * 60 + +splitTime[2];
     setTotalTimeInSeconds(seconds);
   }, []);
+
+  useEffect(() => {
+    if (outOf100 === 0) {
+      setShowEndTime(false);
+    }
+  }, [outOf100]);
 
   const removeTimer = () => {
     setAllTimers(allTimers.filter((timer) => timer["id"] !== currentIndex));
@@ -141,6 +150,7 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
           <SingleTimerInnerCircle
             totalTimeInSeconds={totalTimeInSeconds}
             outOf100={outOf100}
+            showEndTime={showEndTime}
           />
         </div>
         <div
@@ -148,12 +158,20 @@ const SingleTimer: React.FC<SingleTimerProps> = ({
             editTimers === true ? `${styles.editMode}` : ""
           }`}
         >
-          <Play
-            className={styles.singleTimerPlay}
-            fontSize="large"
-            data-testid="single-timer-play"
-            onClick={() => startCountDownTimer()}
-          />
+          {showEndTime === false ? (
+            <Play
+              className={styles.singleTimerPlay}
+              fontSize="large"
+              data-testid="single-timer-play"
+              onClick={() => startCountDownTimer()}
+            />
+          ) : (
+            <Pause
+              className={styles.singleTimerPause}
+              fontSize="large"
+              data-testid="single-timer-pause"
+            />
+          )}
           <Restart
             className={styles.singleTimerRestart}
             fontSize="large"

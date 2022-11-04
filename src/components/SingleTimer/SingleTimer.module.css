@@ -84,7 +84,7 @@
   cursor: pointer;
 }
 
-.singleTimerPlay {
+.singleTimerPlay, .singleTimerPause {
   fill: #1869a6 !important;
 }
 
@@ -92,7 +92,7 @@
   fill: grey;
 }
 
-.singleTimerPlay:hover {
+.singleTimerPlay:hover, .singleTimerPause:hover {
   fill: #58a6e2 !important;
 }
 

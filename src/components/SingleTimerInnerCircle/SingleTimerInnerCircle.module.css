@@ -6,7 +6,27 @@
 }
 
 .singleTimerTime span {
-  width: 200px !important; 
-  height: 200px !important; 
+  width: 215px !important; 
+  height: 215px !important; 
   color: #1869a6 !important;
+}
+
+.endTime {
+  background-color:#F0F0F0;
+  font-size: 13px;
+  border-radius: 15px; 
+  font-weight: 500;
+  width: 90px;
+  padding-top: 2px;
+  padding-bottom: 4px; 
+  margin-left: 25px; 
+  letter-spacing: -0.25px;
+  position: absolute;
+}
+
+.endTime svg {
+  font-size: 13px; 
+  position: relative; 
+  top: 2px;
+  right: 3px; 
 }
